@@ -8,8 +8,9 @@ Tool for synchronize zimbra email accounts with Active Directory.
     cd /opt
     git clone https://github.com/alateas/ad_zimbra_sync.git
     cd ad_zimbra_sync
-    cp run.py.simple run.py
-    # edit run.py to add your own settings
+    cp run.py.sаmple run.py
+edit run.py to add your own settings
+    
     vim run.py
     
 ## Run
