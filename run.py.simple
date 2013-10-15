@@ -1,0 +1,5 @@
+from ad_zimbra_syncer import Syncer
+
+s = Syncer('some.mail.domain', 'ip.of.domain.controller', 'ad_user', 'password_for_ad_user', 'DC=domain,DC=local')
+s.add_mail_domain_filter()
+s.sync()
