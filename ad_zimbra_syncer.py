@@ -10,8 +10,8 @@ logger.addHandler(hdlr)
 logger.setLevel(logging.DEBUG)
 
 class Syncer(object):
-    def __init__(self, zimbra_domain, domain_conntroller, user, password, base_dn, safe_mode=False, delete=False):
-        self.__ad = Ad(domain_conntroller, user, password, base_dn)
+    def __init__(self, zimbra_domain, domain_conntroller, user, password, base_dn, group_dn=None, safe_mode=False, delete=False):
+        self.__ad = Ad(domain_conntroller, user, password, base_dn, group_dn)
         self.__zimbra = Zimbra(zimbra_domain)
         self.__mail_domain = zimbra_domain
         self.__safe_mode = safe_mode
