@@ -10,7 +10,7 @@ class AdParser(object):
             user = LdapUser()
 
             user.login = i[0][1]['sAMAccountName'][0]
-            user.first_name = unicode(i[0][1]['givenName'][0] if  'givenName' in i[0][1] else ''))
+            user.first_name = unicode(i[0][1]['givenName'][0] if  'givenName' in i[0][1] else '')
             user.display_name = unicode(i[0][1]['displayName'][0] if  'displayName' in i[0][1] else '')
 
             user.last_name = unicode(i[0][1]['sn'][0] if  'sn' in i[0][1] else '')
