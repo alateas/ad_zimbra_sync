@@ -24,7 +24,7 @@ class AdParser(object):
 
 class Ad(object):
     def __init__(self, server, user, password, base_dn, group_dn = None):
-        self.__logger = logging.getLogger('sync_ad_zimbra')
+        self.__logger = logging.getLogger('sync_ad_zimbra_stream')
 
         self.__server = server
         self.__group_dn = group_dn
