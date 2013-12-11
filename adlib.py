@@ -10,15 +10,15 @@ class AdParser(object):
             user = LdapUser()
 
             user.login = i[0][1]['sAMAccountName'][0]
-            user.first_name = i[0][1]['givenName'][0] if  'givenName' in i[0][1] else ''
-            user.display_name = i[0][1]['displayName'][0] if  'displayName' in i[0][1] else ''
+            user.first_name = unicode(i[0][1]['givenName'][0] if  'givenName' in i[0][1] else ''))
+            user.display_name = unicode(i[0][1]['displayName'][0] if  'displayName' in i[0][1] else '')
 
-            user.last_name = i[0][1]['sn'][0] if  'sn' in i[0][1] else ''
-            user.tel =  i[0][1]['telephoneNumber'][0] if  'telephoneNumber' in i[0][1] else ''
-            user.department =  i[0][1]['department'][0] if  'department' in i[0][1] else ''
-            user.title =  i[0][1]['title'][0] if  'title' in i[0][1] else ''
-            user.description =  i[0][1]['description'][0] if  'description' in i[0][1] else ''
-            user.mail = i[0][1]['mail'][0] if  'mail' in i[0][1] else ''
+            user.last_name = unicode(i[0][1]['sn'][0] if  'sn' in i[0][1] else '')
+            user.tel =  unicode(i[0][1]['telephoneNumber'][0] if  'telephoneNumber' in i[0][1] else '')
+            user.department =  unicode(i[0][1]['department'][0] if  'department' in i[0][1] else '')
+            user.title =  unicode(i[0][1]['title'][0] if  'title' in i[0][1] else '')
+            user.description =  unicode(i[0][1]['description'][0] if  'description' in i[0][1] else '')
+            user.mail = unicode(i[0][1]['mail'][0] if  'mail' in i[0][1] else '')
             ad_users.append(user)
         return ad_users
 
