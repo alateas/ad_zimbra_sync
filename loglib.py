@@ -13,7 +13,7 @@ def init_logging(report_file=None):
         hdlr = logging.FileHandler(report_file)
     else:
         hdlr = logging.StreamHandler()
-    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+    formatter = logging.Formatter('[%(asctime)s]%(message)s')
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)
     logger.setLevel(logging.INFO)
