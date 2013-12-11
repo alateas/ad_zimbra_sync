@@ -20,7 +20,7 @@ class ZimbraUser(LdapUser):
         if self.department: cmd.extend(["company", self.department])
         if self.title: cmd.extend(["title", self.title])
 
-        return True if call(cmd, stderr=STDOUT, shell=False)==0 else False
+        return passw if call(cmd, stderr=STDOUT, shell=False)==0 else False
 
     def delete(self):
         cmd = ["/opt/zimbra/bin/zmprov", "da", str(self)]
