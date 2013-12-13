@@ -1,9 +1,8 @@
 from subprocess import call, Popen, PIPE, STDOUT
 from ldap_user import LdapUser
-import logging
 import string
 from random import sample, choice
-
+import os
 
 class ZimbraUser(LdapUser):
     def __str__(self):
@@ -19,6 +18,8 @@ class ZimbraUser(LdapUser):
         if self.tel: cmd.extend(["telephoneNumber", self.tel])
         if self.department: cmd.extend(["company", self.department])
         if self.title: cmd.extend(["title", self.title])
+
+        os.environ['LC_ALL'] = 'en_US.UTF-8'
 
         return passw if call(cmd, stderr=STDOUT, shell=False)==0 else False
 
