@@ -10,9 +10,10 @@ Tool for synchronize zimbra email accounts with Active Directory.
     cd ad_zimbra_sync
     cp run.py.sample run.py
 Add to CentOS cron
+
     echo '0 * * * * root python /opt/ad_zimbra_sync/run.py' > /etc/cron.d/zimbrasync
 Edit run.py to add your own settings
-    
+
     vim run.py
     
 ## Run
