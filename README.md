@@ -3,8 +3,10 @@ ad_zimbra_sync
 
 Tool for synchronize zimbra email accounts with Active Directory.
 
-## Install
+## Dependencies
+    apt-get install python-ldap
 
+## Install
     cd /opt
     git clone https://github.com/alateas/ad_zimbra_sync.git
     cd ad_zimbra_sync
