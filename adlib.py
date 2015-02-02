@@ -19,6 +19,7 @@ class AdParser(object):
             user.title =  i[0][1]['title'][0] if  'title' in i[0][1] else ''
             user.description =  i[0][1]['description'][0] if  'description' in i[0][1] else ''
             user.mail = i[0][1]['mail'][0] if  'mail' in i[0][1] else ''
+            user.info = i[0][1]['info'][0] if  'info' in i[0][1] else ''
             ad_users.append(user)
         return ad_users
 
