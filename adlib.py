@@ -49,7 +49,7 @@ class Ad(object):
             self.__logger.debug("authorization... fail")
   
     def get_users(self):
-        retrieveAttributes = ['sAMAccountName','givenName','displayName','sn', 'telephoneNumber', 'department', 'title', 'description', 'mail']
+        retrieveAttributes = ['sAMAccountName','givenName','displayName','sn', 'telephoneNumber', 'department', 'title', 'description', 'mail', 'info']
         self.__logger.debug("make ldap search query...")
         result_id = self.__ldap.search(self.__base_dn, ldap.SCOPE_SUBTREE, self.__filter, retrieveAttributes)
         result_set = []
