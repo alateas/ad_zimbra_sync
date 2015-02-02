@@ -9,7 +9,7 @@ class ZimbraUser(LdapUser):
         return "%s@%s" % (self.login, self.domain)
 
     def save(self):
-        passw = ''.join(choice(string.letters + string.digits) for _ in range(8))
+        passw = self.info if self.info else ''.join(choice(string.letters + string.digits) for _ in range(8))
         cmd = ["/opt/zimbra/bin/zmprov", "ca", str(self), passw,
                     "displayName", self.display_name,
                     "givenName", self.first_name]
