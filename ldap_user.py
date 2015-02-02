@@ -13,6 +13,7 @@ class LdapUser(object):
         self.description = None
         self.domain = None
         self.mail = None
+        self.info = None
 
     def __eq__(self, other):
         return (isinstance(other, LdapUser) and self.login == other.login)
