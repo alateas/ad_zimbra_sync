@@ -3,7 +3,7 @@ from adlib import Ad
 import loglib
 
 class Syncer(object):
-    def __init__(self, zimbra_domain, domain_conntroller, user, password, base_dn, group_dn=None, report_file=None, safe_mode=False, delete=False):
+    def __init__(self, zimbra_domain, domain_conntroller, user, password, base_dn, group_dn=None, report_file=None, safe_mode=False, delete=False, kato_id=None):
         loglib.init_logging(report_file)
         self.__stream_logger = loglib.get_stream_logger()
         self.__report_logger = loglib.get_report_logger()
@@ -13,6 +13,7 @@ class Syncer(object):
         self.__safe_mode = safe_mode
         self.__delete = delete
         self.__filters = []
+        self.__kato_id = kato_id
 
     def __apply_filters(self, users):
         filtred_users = users
@@ -29,6 +30,12 @@ class Syncer(object):
         if passw:
             self.__stream_logger.info("User %s successfully created" % user)
             self.__report_logger.info("%s %s" % (user, passw))
+            if self.__kato_id:
+                import urllib2, json
+                data = {"from": "email_robot", "color": "red", "renderer": "markdown", "text":"**Email created!** %s / %s" % (user, passw)}
+                req = urllib2.Request("https://api.kato.im/rooms/%s/simple" % self.__kato_id)
+                req.add_header('Content-Type', 'application/json')
+                urllib2.urlopen(req, json.dumps(data))
         else:
             self.__stream_logger.info("Error with creating user %s" % user)
 
