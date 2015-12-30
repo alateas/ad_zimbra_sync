@@ -28,8 +28,7 @@ class Syncer(object):
     def __save_user(self, user):
         passw = user.save()
         if passw:
-            self.__stream_logger.info("User %s successfully created" % user)
-            self.__report_logger.info("%s %s" % (user, passw))
+            self.__report_logger.info("User created : %s" % (user, ))
             if self.__kato_id:
                 import urllib2, json
                 data = {"from": "email_robot", "color": "red", "renderer": "markdown", "text":"**Email created!** %s / %s" % (user, passw)}
