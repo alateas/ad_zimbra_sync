@@ -16,7 +16,7 @@ class LdapUser(object):
         self.info = None
 
     def __eq__(self, other):
-        return (isinstance(other, LdapUser) and self.login == other.login)
+        return (isinstance(other, LdapUser) and self.login.lower() == other.login.lower())
 
     def __ne__(self, other):
         return not self.__eq__(other)

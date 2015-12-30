@@ -24,7 +24,7 @@ class Syncer(object):
     def __refresh_data(self):
         self.__ad_users = self.__apply_filters(self.__ad.get_users())
         self.__zimbra_users = self.__zimbra.get_users()
-
+        
     def __save_user(self, user):
         passw = user.save()
         if passw:
@@ -46,14 +46,18 @@ class Syncer(object):
             self.__stream_logger.info("Error with deleting user %s" % user)
 
     def __create_sync(self):
-        self.__stream_logger.debug("AD users to check %d" % len(self.__ad_users))
+        self.__stream_logger.info("Number of Active Directory users to check: %d" % len(self.__ad_users))
+        empty = True
         for ad_user in self.__ad_users:
             if ad_user not in self.__zimbra_users:
+                empty = False
                 z_user = self.__zimbra.convert_ad_to_zimbra_user(ad_user)
                 if not self.__safe_mode:
                     self.__save_user(z_user)
                 else:
                     self.__stream_logger.debug("[safe mode]To create %s" % z_user)
+        if empty:
+            self.__stream_logger.info("Nothing to create.")
     
     def __delete_sync(self):
         for z_user in self.__zimbra_users:

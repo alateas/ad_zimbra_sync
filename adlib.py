@@ -45,8 +45,9 @@ class Ad(object):
         self.__logger.debug("authorization on server %s on user: %s ..." % (self.__server, self.__user))
         if self.__ldap.simple_bind_s(self.__user, self.__password):
             self.__logger.debug("authorization... done")
+            None
         else:
-            self.__logger.debug("authorization... fail")
+            self.__logger.error("authorization... fail")
   
     def get_users(self):
         retrieveAttributes = ['sAMAccountName','givenName','displayName','sn', 'telephoneNumber', 'department', 'title', 'description', 'mail', 'info']

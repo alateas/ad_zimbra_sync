@@ -3,10 +3,10 @@ import logging
 def init_logging(report_file=None):
     logger = logging.getLogger('sync_ad_zimbra_stream')
     hdlr = logging.StreamHandler()
-    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+    formatter = logging.Formatter('{%(levelname)s} %(message)s')
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
 
     logger = logging.getLogger('sync_ad_zimbra_report')
     if report_file:
