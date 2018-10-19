@@ -43,7 +43,8 @@ class Ad(object):
         self.__ldap = ldap.open(self.__server)
         self.__ldap.protocol_version = ldap.VERSION3
         self.__logger.debug("authorization on server %s on user: %s ..." % (self.__server, self.__user))
-        if self.__ldap.simple_bind_s(self.__user, self.__password):
+        self.__ldap.set_option(ldap.OPT_DEBUG_LEVEL, 4095)
+	if self.__ldap.simple_bind_s(self.__user, self.__password):
             self.__logger.debug("authorization... done")
             None
         else:

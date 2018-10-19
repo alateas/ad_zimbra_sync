@@ -16,7 +16,7 @@ def init_logging(report_file=None):
     formatter = logging.Formatter('[%(asctime)s]%(message)s')
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)
-    logger.setLevel(logging.INFO)
+    logger.setLevel(logging.DEBUG)
 
 
 def get_report_logger():
