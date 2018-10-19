@@ -1,8 +1,8 @@
-import logging
+import logging, sys
 
 def init_logging(report_file=None):
     logger = logging.getLogger('sync_ad_zimbra_stream')
-    hdlr = logging.StreamHandler()
+    hdlr = logging.StreamHandler(sys.stdout)
     formatter = logging.Formatter('{%(levelname)s} %(message)s')
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)

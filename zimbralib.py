@@ -4,6 +4,10 @@ import string
 from random import sample, choice
 import os
 
+import logging
+logger = logging.getLogger('sync_ad_zimbra_stream')
+
+
 class ZimbraUser(LdapUser):
     def __str__(self):
         return "%s@%s" % (self.login, self.domain)
@@ -40,15 +44,19 @@ class Zimbra(object):
         return True
 
     def get_users(self):
+        logger.debug("get_users_begin")
         cmd = ["/opt/zimbra/bin/zmprov", "-l", "gaa", self.__domain]
-        output = Popen(cmd, stdout=PIPE).communicate()[0].split("\n")
+        logger.debug("run shell command {}".format(cmd))
+	output = Popen(cmd, stdout=PIPE).communicate()[0].split("\n")
         output = filter(self.__nonsystem_accounts, output)
         users = []
+	logger.debug("got zmprov shell output")
         for account in output:
             u = ZimbraUser()
             u.login = account.split('@')[0]
             u.domain = self.__domain
             users.append(u)
+        logger.debug("get_users return")
         return users
 
     def convert_ad_to_zimbra_user(self, ad_user):
