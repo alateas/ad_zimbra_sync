@@ -12,7 +12,7 @@ def init_logging(report_file=None):
     if report_file:
         hdlr = logging.FileHandler(report_file)
     else:
-        hdlr = logging.StreamHandler()
+        hdlr = logging.StreamHandler(sys.stdout)
     formatter = logging.Formatter('[%(asctime)s]%(message)s')
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)
